@@ -1,12 +1,19 @@
-const { Int32, ObjectId } = require('bson')
-var express = require('express')
-var app = express()
+const express = require('express');
+const engines = require('consolidate');
+const app = express();
+var bodyParser = require("body-parser");
+app.use(bodyParser.urlencoded({ extended: false }));
+
+var publicDir = require('path').join(__dirname,'/public');
+app.use(express.static(publicDir));
+
+const { Int32, ObjectId } = require('mongodb')
 
 var MongoClient = require('mongodb').MongoClient
 var url = 'mongodb+srv://thanhtung:123456tung@cluster0.sul4uxr.mongodb.net/test'
 app.engine('hbs',engines.handlebars);
-app.set('view engine', 'hbs')
-app.use(express.urlencoded({ extended: true }))
+app.set('views','./views');
+app.set('view engine','hbs');
 
 app.post('/search',async (req,res)=>{
     let name = req.body.search
