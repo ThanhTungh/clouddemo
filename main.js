@@ -10,7 +10,7 @@ app.use(express.static(publicDir));
 const { Int32, ObjectId } = require('mongodb')
 
 var MongoClient = require('mongodb').MongoClient
-var url = 'mongodb://0.0.0.0:27017'
+var url = 'mongodb+srv://thanhtung:thanhtung@cluster0.sul4uxr.mongodb.net/test'
 app.engine('hbs',engines.handlebars);
 app.set('views','./views');
 app.set('view engine','hbs');
